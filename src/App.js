@@ -30,7 +30,7 @@ const styles = theme => ({
 
 const SimpleTabs = props => {
   const { classes } = props;
-  const [tabPosition, setTabPosition] = useState(1);
+  const [tabPosition, setTabPosition] = useState(0);
   const changeTab = (event, val) => setTabPosition(val);
   return (
     <div className={classes.root}>
@@ -38,7 +38,6 @@ const SimpleTabs = props => {
         <Tabs value={tabPosition} onChange={changeTab}>
           <Tab label="Example of UseEffect" />
           <Tab label="Creating Own Hooks" />
-          <Tab label="Item Three" />
         </Tabs>
       </AppBar>
       {tabPosition === 0 && (
@@ -51,7 +50,6 @@ const SimpleTabs = props => {
           <CreatingOwnHooks />
         </TabContainer>
       )}
-      {tabPosition === 2 && <TabContainer>Item Three</TabContainer>}
     </div>
   );
 };

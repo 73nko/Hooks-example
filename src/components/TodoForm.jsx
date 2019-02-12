@@ -1,67 +1,28 @@
-import React, { useContext, useState } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React, { useContext, useState } from "react";
 
-import Store from '../Store/context';
+import Store from "../Store/context";
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
-  },
-  button: {
-    margin: theme.spacing.unit
-  }
-});
+const TodoForm = () => {
 
-const TodoForm = ({ classes }) => {
   const { dispatch } = useContext(Store);
+  const [todo, setTodo] = useState("");
+  
+  const handleTodoChange = (e) => setTodo(e.target.value);
 
-  const [todo, setTodo] = useState('');
-
-  function handleTodoChange(e) {
-    setTodo(e.target.value);
+  const handleTodoAdd = () => {
+    dispatch({ type: "ADD_TODO", payload: todo });
+    setTodo("");
   }
 
-  function handleTodoAdd() {
-    dispatch({ type: 'ADD_TODO', payload: todo });
-    setTodo('');
-  }
-
-  function handleSubmitForm(event) {
+  const handleSubmitForm = (event) => {
     if (event.keyCode === 13) handleTodoAdd();
   }
 
   return (
-    <form
-      className={classes.container}
-      autoComplete="off"
-      onSubmit={e => e.preventDefault()}
-    >
-      <TextField
-        id="outlined-name"
-        label="Add todo"
-        className={classes.textField}
-        autoFocus={true}
-        placeholder="Enter new todo"
-        onKeyUp={handleSubmitForm}
-        onChange={handleTodoChange}
-        margin="normal"
-        variant="outlined"
-      />
-      <Button
-        className={classes.Button}
-        color="primary"
-        onClick={handleTodoAdd}
-      >
-        Click me
-      </Button>
-    </form>
+    <header className="header">
+      <input type="text" id="todo-input" className="new-todo" autoFocus={true} placeholder="Enter new todo" onKeyUp={handleSubmitForm} onChange={handleTodoChange} onBlur={handleTodoAdd} />
+    </header>
   );
 };
-export default withStyles(styles)(TodoForm);
+
+export default TodoForm;
