@@ -14,13 +14,20 @@ const TodoForm = () => {
     setTodo("");
   }
 
-  const handleSubmitForm = (event) => {
-    if (event.keyCode === 13) handleTodoAdd();
-  }
+  const handleSubmitForm = (event) => (event.keyCode === 13) && handleTodoAdd();
+
 
   return (
     <header className="header">
-      <input type="text" id="todo-input" className="new-todo" autoFocus={true} placeholder="Enter new todo" onKeyUp={handleSubmitForm} onChange={handleTodoChange} onBlur={handleTodoAdd} />
+      <input type="text"
+             id="todo-input"
+             value={todo}
+             className="new-todo"
+             placeholder="Enter new todo"
+             autoFocus={true}
+             onKeyUp={handleSubmitForm}
+             onChange={handleTodoChange}
+             onBlur={handleTodoAdd} />
     </header>
   );
 };

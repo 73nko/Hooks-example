@@ -13,9 +13,9 @@ export default function Example() {
 
   return (
     <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)} >
-        Click me
+      <h2>You clicked {count} times</h2>
+      <button className="btn" onClick={() => setCount(count + 1)} >
+        <span>Click me</span>
       </button>
     </div>
   );

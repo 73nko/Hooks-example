@@ -17,7 +17,7 @@ const CreatingOwnHooks = () => {
     useReducer(reducer, globalStore),
     'state' // The localStorage key
   );
-
+  console.log(globalStore)
   return (
     // State.Provider passes the state and dispatcher to the down
     <Store.Provider value={{ state, dispatch }}>
